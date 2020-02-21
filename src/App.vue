@@ -7,7 +7,7 @@
       v-on:updateSelectedStatus="receiveSelectedStatus"
       v-on:updateSelectedGender="receiveSelectedGender"
     />
-    <CharacterList />
+    <CharacterList :characters="characters" />
   </div>
 </template>
 
@@ -29,6 +29,31 @@ export default {
         status: ['Alive', 'Dead', 'unknown'],
         gender: ['Female', 'Male', 'Genderless', 'unknown']
       },
+      characters: [
+        {
+          "id": 1,
+          "name": "Rick Sanchez",
+          "status": "Alive",
+          "species": "Human",
+          "type": "",
+          "gender": "Male",
+          "origin": {
+            "name": "Earth",
+            "url": "https://rickandmortyapi.com/api/location/1"
+          },
+          "location": {
+            "name": "Earth",
+            "url": "https://rickandmortyapi.com/api/location/20"
+          },
+          "image": "https://rickandmortyapi.com/api/character/avatar/1.jpeg",
+          "episode": [
+            "https://rickandmortyapi.com/api/episode/1",
+            "https://rickandmortyapi.com/api/episode/2"
+          ],
+          "url": "https://rickandmortyapi.com/api/character/1",
+          "created": "2017-11-04T18:48:46.250Z"
+        }
+      ],
       showStatus: null,
       showGender: null
     }
