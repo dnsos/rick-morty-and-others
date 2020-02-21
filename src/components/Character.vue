@@ -41,8 +41,11 @@ export default {
       validator: function (value) {
 
         const necessaryKeys = ['id', 'name', 'image', 'species', 'type', 'status', 'gender', 'origin', 'location']
+        const propKeys = Object.keys(value)
         
-        return Object.keys(value).some(key => necessaryKeys.includes(key) )
+        const isIncludedInPropKeys = (currentKey) => propKeys.includes(currentKey)
+        
+        return necessaryKeys.every(isIncludedInPropKeys)
       }
     }
   },
