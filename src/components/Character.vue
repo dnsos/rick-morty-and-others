@@ -2,7 +2,11 @@
   <article>
     <div class="info-default">
       <h3>{{ characterDetails.name }}</h3>
-      <img :src="characterDetails.image" alt="Character Image">
+      <img
+        :src="characterDetails.image"
+        :alt="`Image of ${characterDetails.name}`"
+        :class="characterDetails.status === 'Dead' ? 'dead' : ''"
+      >
       <dl>
         <dt>ID</dt>
         <dd>{{ characterDetails.id }}</dd>
@@ -63,4 +67,7 @@ export default {
 </script>
 
 <style scoped>
+.dead {
+  filter: grayscale(1)
+}
 </style>
