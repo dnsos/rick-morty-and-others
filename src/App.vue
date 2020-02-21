@@ -7,7 +7,7 @@
       v-on:updateSelectedStatus="receiveSelectedStatus"
       v-on:updateSelectedGender="receiveSelectedGender"
     />
-    <CharacterList :characters="characters" />
+    <CharacterList :characters="renderedCharacters" />
   </div>
 </template>
 
@@ -54,18 +54,25 @@ export default {
           "created": "2017-11-04T18:48:46.250Z"
         }
       ],
-      showStatus: null,
-      showGender: null
+      visibleStatus: ['Alive', 'Dead', 'unknown'],
+      visibleGenders: ['Female', 'Male', 'Genderless', 'unknown']
+    }
+  },
+  computed: {
+    renderedCharacters: function () {
+      return this.characters.filter(character => {
+        return this.visibleStatus.includes(character.status) && this.visibleGenders.includes(character.gender)
+      })
     }
   },
   methods: {
     receiveSelectedStatus: function (status) {
       console.log('Received selected status', status)
-      this.showStatus = status
+      this.visibleStatus = status
     },
-    receiveSelectedGender: function (gender) {
-      console.log('Received selected gender', gender)
-      this.showGender = gender
+    receiveSelectedGender: function (genders) {
+      console.log('Received selected genders', genders)
+      this.visibleGenders = genders
     }
   }
 }
