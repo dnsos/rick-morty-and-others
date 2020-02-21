@@ -11,6 +11,7 @@
         <dd>Subtype (if exists)</dd>
       </dl>
     </div>
+    <button v-on:click="toggleExtendedInfo">{{ isExtended ? 'Hide' : 'Show' }} details</button>
     <div
       v-if="isExtended"
       class="info-extended"
@@ -36,6 +37,11 @@ export default {
   data() {
     return {
       isExtended: true
+    }
+  },
+  methods: {
+    toggleExtendedInfo: function () {
+      this.isExtended = !this.isExtended
     }
   }
 }
