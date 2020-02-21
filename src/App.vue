@@ -1,16 +1,22 @@
 <template>
   <div id="app">
-    <Character />
+    <HeaderBar />
+    <Filters />
+    <CharacterList />
   </div>
 </template>
 
 <script>
-import Character from './components/Character.vue'
+import HeaderBar from './components/HeaderBar.vue'
+import Filters from './components/Filters.vue'
+import CharacterList from './components/CharacterList.vue'
 
 export default {
   name: 'App',
   components: {
-    Character
+    HeaderBar,
+    Filters,
+    CharacterList
   }
 }
 </script>
