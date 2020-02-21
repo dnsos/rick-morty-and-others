@@ -37,7 +37,13 @@ export default {
   props: {
     characterDetails: {
       type: Object,
-      required: true
+      required: true,
+      validator: function (value) {
+
+        const necessaryKeys = ['id', 'name', 'image', 'species', 'type', 'status', 'gender', 'origin', 'location']
+        
+        return Object.keys(value).some(key => necessaryKeys.includes(key) )
+      }
     }
   },
   data() {
