@@ -36,7 +36,7 @@ export default {
   name: 'Character',
   data() {
     return {
-      isExtended: true
+      isExtended: false
     }
   },
   methods: {
