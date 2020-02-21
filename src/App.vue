@@ -7,6 +7,14 @@
       v-on:updateSelectedStatus="receiveSelectedStatus"
       v-on:updateSelectedGender="receiveSelectedGender"
     />
+    <button
+      v-if="adjacentPages.prev != ''"
+      v-on:click="getCharacters(adjacentPages.prev)"
+    >Previous page</button>
+    <button
+      v-if="adjacentPages.next != ''"
+      v-on:click="getCharacters(adjacentPages.next)"
+    >Next page</button>
     <CharacterList :characters="renderedCharacters" />
   </div>
 </template>
@@ -30,6 +38,10 @@ export default {
         gender: ['Female', 'Male', 'Genderless', 'unknown']
       },
       characters: [],
+      adjacentPages: {
+        next: '',
+        prev: ''
+      },
       visibleStatus: ['Alive', 'Dead', 'unknown'],
       visibleGenders: ['Female', 'Male', 'Genderless', 'unknown']
     }
@@ -45,7 +57,10 @@ export default {
     getCharacters: async function (url) {
       const response = await fetch(url)
       const json = await response.json()
+
       this.characters = json.results
+      const { next, prev } = json.info
+      this.adjacentPages = { next, prev }
     },
     receiveSelectedStatus: function (status) {
       console.log('Received selected status', status)
