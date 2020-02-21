@@ -1,14 +1,14 @@
 <template>
   <article>
     <div class="info-default">
-      <h3>Name of character</h3>
-      <img src="" alt="Character Image">
+      <h3>{{ characterDetails.name }}</h3>
+      <img :src="characterDetails.image" alt="Character Image">
       <dl>
         <dt>ID</dt>
-        <dd>12345</dd>
+        <dd>{{ characterDetails.id }}</dd>
         <dt>Species</dt>
-        <dd>Human</dd>
-        <dd>Subtype (if exists)</dd>
+        <dd>{{ characterDetails.species }}</dd>
+        <dd v-if="characterDetails.type">{{ characterDetails.type }}</dd>
       </dl>
     </div>
     <button v-on:click="toggleExtendedInfo">{{ isExtended ? 'Hide' : 'Show' }} details</button>
@@ -19,13 +19,13 @@
       <h4>Extended info</h4>
       <dl>
         <dt>Status</dt>
-        <dd>Alive</dd>
+        <dd>{{ characterDetails.status }}</dd>
         <dt>Gender</dt>
-        <dd>Unknown</dd>
+        <dd>{{ characterDetails.gender }}</dd>
         <dt>Origin</dt>
-        <dd>Earth</dd>
+        <dd>{{ characterDetails.origin.name }}</dd>
         <dt>Last Location</dt>
-        <dd>Earth</dd>
+        <dd>{{ characterDetails.location.name }}</dd>
       </dl>
     </div>
   </article>
@@ -34,6 +34,12 @@
 <script>
 export default {
   name: 'Character',
+  props: {
+    characterDetails: {
+      type: Object,
+      required: true
+    }
+  },
   data() {
     return {
       isExtended: false
