@@ -2,16 +2,18 @@
   <main class="character-list">
     <h2>Character list</h2>
     <ul>
-      <li>Character A</li>
-      <li>Character B</li>
-      <li>Character C</li>
+      <li><Character /></li>
     </ul>
   </main>
 </template>
 
 <script>
+import Character from './Character.vue'
 export default {
-  name: 'CharacterList'
+  name: 'CharacterList',
+  components: {
+    Character
+  }
 }
 </script>
 
