@@ -54,6 +54,14 @@ export default {
       selectedStatus: this.status,
       selectedGender: this.gender
     }
+  },
+  watch: {
+    selectedStatus: function () {
+      this.$emit('updateSelectedStatus', this.selectedStatus)
+    },
+    selectedGender: function () {
+      this.$emit('updateSelectedGender', this.selectedGender)
+    }
   }
 }
 </script>
