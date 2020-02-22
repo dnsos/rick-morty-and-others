@@ -94,11 +94,9 @@ export default {
       this.totalCharacters = count
     },
     receiveSelectedStatus: function (status) {
-      console.log('Received selected status', status)
       this.visibleStatus = status
     },
     receiveSelectedGender: function (genders) {
-      console.log('Received selected genders', genders)
       this.visibleGenders = genders
     }
   },
