@@ -22,7 +22,16 @@
           v-on:click="getCharacters(adjacentPages.next)"
         >Next →</button>
       </nav>
-      <CharacterList :characters="renderedCharacters" />
+      <div
+        v-if="renderedCharacters.length === 0"
+        class="no-results-note"
+      >
+        <span>No characters match your filters. Try resetting your filters or search the previous or next page of characters.</span>
+      </div>
+      <CharacterList
+        v-else
+        :characters="renderedCharacters"
+      />
     </main>
   </div>
 </template>
@@ -184,10 +193,22 @@ button:focus {
   outline: .1rem dotted black;
 }
 
+/* NAV PAGES
+----------------------------------------------------- */
 nav {
   display: flex;
   justify-content: center;
   position: sticky;
   top: calc(var(--grid-spacing) * 2);
+}
+
+/* NO RESULTS NOTE
+----------------------------------------------------- */
+.no-results-note {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 </style>
