@@ -10,7 +10,7 @@
         :class="characterDetails.status === 'Dead' ? 'dead' : ''"
       >
       <h3>{{ characterDetails.name }} <span>| #{{ characterDetails.id }}</span></h3>
-      <span>{{ characterDetails.species }} <span v-if="characterDetails.type">{{ characterDetails.type }}</span> </span>
+      <span>{{ characterDetails.species }} <span v-if="characterDetails.type">| {{ characterDetails.type }}</span> </span>
     </div>
     <div
       v-if="isExtended"
