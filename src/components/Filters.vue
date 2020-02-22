@@ -35,8 +35,22 @@
         <label :for="`gender-${gender}`">{{ gender }}</label>
       </div>
     </fieldset>
-    <div class="counter">
-      {{ counts.total }} characters in total, {{ counts.page }} on this page, {{ counts.matching }} matching your filters.
+    <div class="counts-table">
+      <table>
+        <caption>Characters:</caption>
+        <tr>
+          <td class="count"><strong>{{ counts.total }}</strong></td>
+          <td>in total</td>
+        </tr>
+        <tr>
+          <td class="count"><strong>{{ counts.page }}</strong></td>
+          <td>on this page</td>
+        </tr>
+        <tr>
+          <td class="count"><strong>{{ counts.matching }}</strong></td>
+          <td>matching your filters</td>
+        </tr>
+      </table>
     </div>
   </section>
 </template>
@@ -104,6 +118,7 @@ legend {
 
 .wrapper-checkbox {
   display: inline-block;
+  margin-top: var(--grid-spacing);
   margin-right: 1rem;
   background-color: var(--color-background);
   border: 2px solid transparent;
@@ -127,7 +142,20 @@ label {
   background-color: var(--color-secondary);
 }
 
-.counter {
+.counts-table {
   margin-top: var(--grid-spacing);
+}
+
+caption {
+  text-align: left;
+  font-size: var(--font-size-small);
+}
+
+td {
+  padding-right: .6rem;
+}
+
+.count {
+  text-align: right;
 }
 </style>
