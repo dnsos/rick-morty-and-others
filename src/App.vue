@@ -121,6 +121,7 @@ export default {
 }
 body {
   font-size: var(--font-size-regular);
+  font-family: 'Oswald', 'Arial', sans-serif;
   color: var(--color-primary);
   line-height: 1.5;
 }
