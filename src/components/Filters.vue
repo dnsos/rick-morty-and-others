@@ -1,9 +1,14 @@
 <template>
   <section class="filters">
-    <h2>Filters</h2>
+    <h2>Refine results</h2>
     <fieldset>
-      <legend>Show status</legend>
-      <div v-for="(status, index) in status" :key="index">
+      <legend>Filter by status:</legend>
+      <div
+        v-for="(status, index) in status"
+        :key="index"
+        class="wrapper-checkbox"
+        :class="selectedStatus.includes(status) ? 'selected' : ''"
+      >
         <input
           type="checkbox"
           :id="`status-${status}`"
@@ -14,8 +19,13 @@
       </div>
     </fieldset>
     <fieldset>
-      <legend>Show genders</legend>
-      <div v-for="(gender, index) in gender" :key="index">
+      <legend>Filter by gender:</legend>
+      <div
+        v-for="(gender, index) in gender"
+        :key="index"
+        class="wrapper-checkbox"
+        :class="selectedGender.includes(gender) ? 'selected' : ''"
+      >
         <input
           type="checkbox"
           :id="`gender-${gender}`"
@@ -63,7 +73,42 @@ export default {
 </script>
 
 <style scoped>
-.filters, fieldset {
+.filters {
   margin-top: var(--grid-spacing);
+}
+
+fieldset {
+  padding: 0;
+  margin: var(--grid-spacing) 0 0;
+  border: none;
+}
+
+legend {
+  font-size: var(--font-size-small);
+}
+
+.wrapper-checkbox {
+  display: inline-block;
+  margin-right: 1rem;
+  background-color: var(--color-background);
+  border: 2px solid transparent;
+}
+
+.wrapper-checkbox:hover {
+  border-color: var(--color-primary);
+}
+
+input[type=checkbox] { display: none; }
+
+label {
+  width: 100%;
+  height: 100%;
+  padding: .6rem 1.2rem;
+  cursor: pointer;
+}
+
+.selected {
+  color: white;
+  background-color: var(--color-secondary);
 }
 </style>

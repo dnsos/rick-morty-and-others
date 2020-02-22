@@ -91,9 +91,11 @@ export default {
 
   --grid-spacing: 2rem;
 
+  --font-size-small: 1.5rem;
   --font-size-regular: 2rem;
   --font-size-large: 3rem;
   --color-primary: rgb(30, 30, 30);
+  --color-secondary: rgb(80, 80, 80);
   --color-background: rgb(230, 230, 230);
 }
 body {
