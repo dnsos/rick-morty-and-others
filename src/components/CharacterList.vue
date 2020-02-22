@@ -1,12 +1,12 @@
 <template>
-  <main class="character-list">
+  <section class="character-list">
     <h2>Character list</h2>
     <ul>
       <li v-for="(character, index) in characters" v-bind:key="index">
         <Character :characterDetails="character" />
       </li>
     </ul>
-  </main>
+  </section>
 </template>
 
 <script>
@@ -27,4 +27,10 @@ export default {
 </script>
 
 <style scoped>
+.character-list {
+  margin-top: var(--grid-spacing);
+}
+li {
+  margin-top: var(--grid-spacing);
+}
 </style>
