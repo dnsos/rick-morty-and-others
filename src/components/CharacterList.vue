@@ -1,7 +1,7 @@
 <template>
   <section class="wrapper-character-list">
     <ul>
-      <li v-for="(character, index) in characters" v-bind:key="index">
+      <li v-for="character in characters" :key="character.id">
         <Character :characterDetails="character" />
       </li>
     </ul>
