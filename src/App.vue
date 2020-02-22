@@ -17,11 +17,11 @@
         <button
           v-show="adjacentPages.prev != ''"
           v-on:click="getCharacters(adjacentPages.prev)"
-        >← Previous</button>
+        >Previous</button>
         <button
           v-show="adjacentPages.next != ''"
           v-on:click="getCharacters(adjacentPages.next)"
-        >Next →</button>
+        >Next</button>
       </nav>
       <div
         v-if="renderedCharacters.length === 0"
