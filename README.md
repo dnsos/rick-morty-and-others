@@ -1,24 +1,23 @@
-# rick-morty-and-others
+# Rick, Morty, and Others
 
-## Project setup
+This demo Vue app accesses the [Rick & Morty REST API](https://rickandmortyapi.com/documentation/#rest) and enables exploration of the characters from the show.
+
+## Instructions
+
+1 Ensure that node.js is installed
+
+2 Install dependencies
 ```
 npm install
 ```
 
-### Compiles and hot-reloads for development
+3 Run in development mode
 ```
 npm run serve
 ```
+4 View app at: http://localhost:8080/
 
-### Compiles and minifies for production
+## Building for production
 ```
 npm run build
 ```
-
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
