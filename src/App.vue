@@ -84,14 +84,26 @@ export default {
 </script>
 
 <style>
+/* BASE
+----------------------------------------------------- */
 :root {
   font-size: 8px;
 
   --grid-spacing: 2rem;
+
+  --font-size-regular: 2rem;
+  --font-size-large: 3rem;
+  --color-primary: rgb(30, 30, 30);
+  --color-background: rgb(230, 230, 230);
 }
 body {
-  font-size: 2rem;
+  font-size: var(--font-size-regular);
+  color: var(--color-primary);
+  line-height: 1.5;
 }
+
+/* LAYOUT
+----------------------------------------------------- */
 #app {
   height: 100vh;
   padding: var(--grid-spacing);
@@ -120,5 +132,51 @@ body {
 .grid-sidebar { grid-area: sidebar; }
 .grid-main { grid-area: main; }
 
-.wrapper-sidebar { position: sticky; top: 0; }
+.wrapper-sidebar {
+  position: sticky;
+  top: calc(var(--grid-spacing) * 2);
+}
+
+/* TYPOGRAPHY
+----------------------------------------------------- */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  display: block;
+  margin-top: var(--grid-spacing);
+  margin-bottom: 0;
+  font-weight: bold;
+}
+
+* > h1,
+* > h2,
+* > h3,
+* > h4,
+* > h5,
+* > h6 {
+    margin-top: 0;
+}
+
+h1 { font-size: var(--font-size-large); }
+h2, h3, h4, h5, h6 { font-size: var(--font-size-regular); }
+
+p {
+  margin-top: var(--grid-spacing);
+  margin-bottom: 0;
+}
+
+/* BUTTONS
+----------------------------------------------------- */
+button {
+  padding: .6rem 1.2rem;
+  margin-right: 1rem;
+  background-color: var(--color-background);
+  border: none;
+}
+button:focus {
+  outline: .1rem dotted black;
+}
 </style>
