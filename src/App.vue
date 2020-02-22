@@ -1,21 +1,27 @@
 <template>
   <div id="app">
-    <HeaderBar />
-    <Filters
-      :status="filterOptions.status"
-      :gender="filterOptions.gender"
-      v-on:updateSelectedStatus="receiveSelectedStatus"
-      v-on:updateSelectedGender="receiveSelectedGender"
-    />
-    <button
-      v-if="adjacentPages.prev != ''"
-      v-on:click="getCharacters(adjacentPages.prev)"
-    >Previous page</button>
-    <button
-      v-if="adjacentPages.next != ''"
-      v-on:click="getCharacters(adjacentPages.next)"
-    >Next page</button>
-    <CharacterList :characters="renderedCharacters" />
+    <section class="grid-sidebar">
+      <div class="wrapper-sidebar">
+        <HeaderBar />
+        <Filters
+          :status="filterOptions.status"
+          :gender="filterOptions.gender"
+          v-on:updateSelectedStatus="receiveSelectedStatus"
+          v-on:updateSelectedGender="receiveSelectedGender"
+        />
+      </div>
+    </section>
+    <main class="grid-main">
+      <button
+        v-if="adjacentPages.prev != ''"
+        v-on:click="getCharacters(adjacentPages.prev)"
+      >Previous page</button>
+      <button
+        v-if="adjacentPages.next != ''"
+        v-on:click="getCharacters(adjacentPages.next)"
+      >Next page</button>
+      <CharacterList :characters="renderedCharacters" />
+    </main>
   </div>
 </template>
 
@@ -78,4 +84,41 @@ export default {
 </script>
 
 <style>
+:root {
+  font-size: 8px;
+
+  --grid-spacing: 2rem;
+}
+body {
+  font-size: 2rem;
+}
+#app {
+  height: 100vh;
+  padding: var(--grid-spacing);
+  display: grid;
+  grid-gap: var(--grid-spacing);
+  gap: var(--grid-spacing);
+  grid-template-columns: 3fr 9fr;
+  grid-auto-rows: auto;
+}
+
+@media (max-width: 850px) {
+  #app {
+    grid-template-areas:
+      "sidebar sidebar"
+      "main main";
+  }
+}
+
+@media (min-width: 850px) {
+  #app {
+    grid-template-areas: "sidebar main";
+  }
+}
+
+.grid-sidebar, .grid-main { padding: var(--grid-spacing); }
+.grid-sidebar { grid-area: sidebar; }
+.grid-main { grid-area: main; }
+
+.wrapper-sidebar { position: sticky; top: 0; }
 </style>
