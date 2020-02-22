@@ -12,14 +12,16 @@
       </div>
     </section>
     <main class="grid-main">
-      <button
-        v-if="adjacentPages.prev != ''"
-        v-on:click="getCharacters(adjacentPages.prev)"
-      >Previous page</button>
-      <button
-        v-if="adjacentPages.next != ''"
-        v-on:click="getCharacters(adjacentPages.next)"
-      >Next page</button>
+      <nav>
+        <button
+          v-show="adjacentPages.prev != ''"
+          v-on:click="getCharacters(adjacentPages.prev)"
+        >← Previous</button>
+        <button
+          v-show="adjacentPages.next != ''"
+          v-on:click="getCharacters(adjacentPages.next)"
+        >Next →</button>
+      </nav>
       <CharacterList :characters="renderedCharacters" />
     </main>
   </div>
@@ -176,9 +178,16 @@ button {
   padding: .6rem 1.2rem;
   margin-right: 1rem;
   background-color: var(--color-background);
-  border: none;
+  border: 2px solid var(--color-primary);
 }
 button:focus {
   outline: .1rem dotted black;
+}
+
+nav {
+  display: flex;
+  justify-content: center;
+  position: sticky;
+  top: calc(var(--grid-spacing) * 2);
 }
 </style>
