@@ -62,7 +62,7 @@ export default {
       },
       visibleStatus: ['Alive', 'Dead', 'unknown'],
       visibleGenders: ['Female', 'Male', 'Genderless', 'unknown'],
-      counts: {}
+      totalCharacters: null
     }
   },
   computed: {
@@ -73,6 +73,13 @@ export default {
     },
     noOfMatchingCharacters: function () {
       return this.renderedCharacters.length
+    },
+    counts: function () {
+      return {
+        total: this.totalCharacters,
+        page: this.characters.length,
+        matching: this.renderedCharacters.length
+      }
     }
   },
   methods: {
@@ -84,10 +91,7 @@ export default {
       const { count, next, prev } = json.info
       this.adjacentPages = { next, prev }
 
-      this.counts = {
-        total: count,
-        page: json.results.length
-      }
+      this.totalCharacters = count
     },
     receiveSelectedStatus: function (status) {
       console.log('Received selected status', status)
