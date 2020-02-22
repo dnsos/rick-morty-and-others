@@ -206,6 +206,10 @@ button:focus {
   outline: .1rem dotted black;
 }
 
+button:active {
+  background-color: var(--color-secondary);
+}
+
 /* NAV PAGES
 ----------------------------------------------------- */
 nav {
