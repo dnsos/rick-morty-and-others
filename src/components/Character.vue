@@ -1,34 +1,29 @@
 <template>
-  <article>
+  <article
+    :class="isExtended ? 'character-expanded' : ''"
+    v-on:click="toggleExtendedInfo"
+  >
     <div class="info-default">
-      <h3>{{ characterDetails.name }}</h3>
       <img
         :src="characterDetails.image"
         :alt="`Image of ${characterDetails.name}`"
         :class="characterDetails.status === 'Dead' ? 'dead' : ''"
       >
-      <dl>
-        <dt>ID</dt>
-        <dd>{{ characterDetails.id }}</dd>
-        <dt>Species</dt>
-        <dd>{{ characterDetails.species }}</dd>
-        <dd v-if="characterDetails.type">{{ characterDetails.type }}</dd>
-      </dl>
+      <h3>{{ characterDetails.name }} <span>| #{{ characterDetails.id }}</span></h3>
+      <span>{{ characterDetails.species }} <span v-if="characterDetails.type">{{ characterDetails.type }}</span> </span>
     </div>
-    <button v-on:click="toggleExtendedInfo">{{ isExtended ? 'Hide' : 'Show' }} details</button>
     <div
       v-if="isExtended"
       class="info-extended"
     >
-      <h4>Extended info</h4>
       <dl>
-        <dt>Status</dt>
+        <dt>Status:</dt>
         <dd>{{ characterDetails.status }}</dd>
-        <dt>Gender</dt>
+        <dt>Gender:</dt>
         <dd>{{ characterDetails.gender }}</dd>
-        <dt>Origin</dt>
+        <dt>Origin:</dt>
         <dd>{{ characterDetails.origin.name }}</dd>
-        <dt>Last Location</dt>
+        <dt>Last Location:</dt>
         <dd>{{ characterDetails.location.name }}</dd>
       </dl>
     </div>
@@ -67,7 +62,38 @@ export default {
 </script>
 
 <style scoped>
-.dead {
-  filter: grayscale(1)
+article {
+  padding: var(--grid-spacing);
+  text-align: center;
+  border: 2px solid transparent;
+  cursor: pointer;
+}
+
+article:hover {
+  border-color: var(--color-primary);
+}
+
+.character-expanded {
+  background-color: var(--color-background);
+  border-color: var(--color-primary);
+}
+
+.info-default {
+  text-align: center;
+}
+
+img {
+  width: 100%;
+  max-width: 300px;
+  border-radius: 50%;
+}
+
+dt {
+  font-size: var(--font-size-small);
+}
+
+dd {
+  margin: 0;
+  font-weight: bold;
 }
 </style>
