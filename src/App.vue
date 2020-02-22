@@ -6,6 +6,7 @@
         <Filters
           :status="filterOptions.status"
           :gender="filterOptions.gender"
+          :counts="{ ...counts, matching: noOfMatchingCharacters }"
           v-on:updateSelectedStatus="receiveSelectedStatus"
           v-on:updateSelectedGender="receiveSelectedGender"
         />
@@ -60,7 +61,8 @@ export default {
         prev: ''
       },
       visibleStatus: ['Alive', 'Dead', 'unknown'],
-      visibleGenders: ['Female', 'Male', 'Genderless', 'unknown']
+      visibleGenders: ['Female', 'Male', 'Genderless', 'unknown'],
+      counts: {}
     }
   },
   computed: {
@@ -68,6 +70,9 @@ export default {
       return this.characters.filter(character => {
         return this.visibleStatus.includes(character.status) && this.visibleGenders.includes(character.gender)
       })
+    },
+    noOfMatchingCharacters: function () {
+      return this.renderedCharacters.length
     }
   },
   methods: {
@@ -76,8 +81,13 @@ export default {
       const json = await response.json()
 
       this.characters = json.results
-      const { next, prev } = json.info
+      const { count, next, prev } = json.info
       this.adjacentPages = { next, prev }
+
+      this.counts = {
+        total: count,
+        page: json.results.length
+      }
     },
     receiveSelectedStatus: function (status) {
       console.log('Received selected status', status)

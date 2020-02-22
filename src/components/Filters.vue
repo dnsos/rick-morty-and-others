@@ -35,6 +35,9 @@
         <label :for="`gender-${gender}`">{{ gender }}</label>
       </div>
     </fieldset>
+    <div class="counter">
+      {{ counts.total }} characters in total, {{ counts.page }} on this page, {{ counts.matching }} matching your filters.
+    </div>
   </section>
 </template>
 
@@ -52,6 +55,18 @@ export default {
       type: Array,
       default: function () {
         return ['Female', 'Male', 'Genderless', 'unknown']
+      }
+    },
+    counts: {
+      type: Object,
+      required: true,
+      validator: function (value) {
+        const necessaryKeys = ['total', 'page', 'matching']
+        const propKeys = Object.keys(value)
+        
+        const isIncludedInPropKeys = (currentKey) => propKeys.includes(currentKey)
+        
+        return necessaryKeys.every(isIncludedInPropKeys)
       }
     }
   },
@@ -110,5 +125,9 @@ label {
 .selected {
   color: white;
   background-color: var(--color-secondary);
+}
+
+.counter {
+  margin-top: var(--grid-spacing);
 }
 </style>
